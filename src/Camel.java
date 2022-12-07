@@ -1,44 +1,30 @@
 public class Camel {
+    private static int globalIdEnumorator = 0;
+    private int rank;
     private int id;
-    private char representative;
-    private int physPosition;
-    private int racePosition;
-    private Dice dice;
+    private char reprsnt;
 
-    public Camel(int id, char representative, int physPosition, int racePosition){
-        this.id = id;
-        this.representative = representative;
-        this.physPosition = physPosition;
-        this.racePosition = racePosition;
-        this.dice = new Dice(false, 1,3);
+    public Camel(int rank, char reprsnt){
+        this.rank = rank;
+        this.reprsnt = reprsnt;
+        this.id = globalIdEnumorator;
+        globalIdEnumorator++;
     }
 
-    public int getRacePosition(){
-        return this.racePosition;
+    public int getRank(){
+        return rank;
     }
 
-    public int getPhysPosition(){
-        return this.physPosition;
+    public void setRank(int rank){
+        this.rank = rank;
     }
 
-    public void incrementPhysPosition(int increment){
-        this.physPosition += increment;
+    public int getId(){
+        return id;
     }
 
-    public int rollRandom(){
-        return this.dice.rollRandom();
-    }
-
-    public int rollSize(){
-        return this.dice.size();
-    }
-
-    public int rollDeter(int index){
-        return this.dice.roll(index);
-    }
-
-    public char getRepr(){
-        return this.representative;
+    public String toString(){
+        return Character.toString(this.reprsnt);
     }
 
 }

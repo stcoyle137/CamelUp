@@ -1,44 +1,48 @@
 import java.util.Random;
 
 public class Dice {
-    private boolean rolled;
-    private int[] values;
+    private boolean isRolled;
+    private int[] faces;
+    private int camelId;
+    private int size;
 
-    public Dice(boolean rolled, int minRoll, int maxRoll){
-        if(minRoll >= maxRoll){
+    public Dice(int camel, int minVal, int maxVal){
+        if(maxVal <= minVal){
             return;
         }
+        this.size = minVal - maxVal;
+        this.faces = new int[this.size];
+        this.camelId = camel;
 
-        this.rolled = rolled;
-        this.values = new int[maxRoll - minRoll];
-
-        for (int i = minRoll; i < maxRoll; i++){
-            this.values[i-minRoll] = i;
+        for (int i = 0; i < this.size; i++) {
+            this.faces[i] = i + minVal;
         }
     }
 
-    public int roll(int i){
-        if(rolled){
+    public int getDeterminedRoll(int index){
+        if(this.isRolled){
             return Integer.MIN_VALUE;
         }
-        rolled = true;
-        return values[i];
+        this.isRolled = true;
+        return this.faces[index];
+    }
+    public int getRandomRoll(){
+        int index = (int) (Math.random() * this.size);
+        return getDeterminedRoll(index);
+    }
+    public void resetDice(){
+        this.isRolled = false;
     }
 
-    public int rollRandom(){
-        int index = (int) Math.floor(Math.random() * size());
-        return roll(index);
+    public int getCamelId(){
+        return this.camelId;
     }
 
-    public void resetLeg(){
-        rolled = false;
+    public int getSize(){
+        return this.size;
     }
 
     public boolean isRolled(){
-        return rolled;
-    }
-
-    public int size(){
-        return values.length;
+        return this.isRolled;
     }
 }
