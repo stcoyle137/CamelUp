@@ -10,7 +10,7 @@ public class Dice {
         if(maxVal <= minVal){
             return;
         }
-        this.size = minVal - maxVal;
+        this.size = maxVal - minVal + 1;
         this.faces = new int[this.size];
         this.camelId = camel;
 
