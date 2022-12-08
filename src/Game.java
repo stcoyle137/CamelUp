@@ -1,3 +1,4 @@
+import Backend.RollLog;
 import CamelFramework.Camel;
 import CamelFramework.Track;
 
@@ -7,7 +8,9 @@ import java.util.Collections;
 public class Game {
     private Stables s;
     private Track t;
+    private RollLog rollLog;
     public Game(char[] rprsnts, int trackLength){
+        this.rollLog = new RollLog();
         this.s = new Stables();
         for(Character c : rprsnts) {
             s.addCamel(0, c, 1, 3);
@@ -23,6 +26,7 @@ public class Game {
     }
 
     public Game(char[] rprsnts, int[] startingPosition, int trackLength){
+        this.rollLog = new RollLog();
         this.s = new Stables();
         for(Character c : rprsnts) {
             s.addCamel(0, c, 1, 3);
@@ -38,14 +42,26 @@ public class Game {
         if(roll == Integer.MIN_VALUE) {
             return;
         }
-        t.moveCamelToTile(camelOutcome, t.findCamel(camelOutcome) + roll);
+        int formerLoc = t.findCamel(camelOutcome);
+        int newLoc = formerLoc + roll;
+
+        int affected = t.moveCamelToTile(camelOutcome, newLoc);
+        updateRanking();
+
+        this.rollLog.addRollLog(this.s.findCamel(camelOutcome), roll, formerLoc, newLoc, affected);
     }
     public void randomRollDeterminedCamel(int camelOutcome){
         int roll = s.randomedRoll(camelOutcome);
         if(roll == Integer.MIN_VALUE) {
             return;
         }
-        t.moveCamelToTile(camelOutcome, t.findCamel(camelOutcome) + roll);
+        int formerLoc = t.findCamel(camelOutcome);
+        int newLoc = formerLoc + roll;
+
+        int affected = t.moveCamelToTile(camelOutcome, newLoc);
+        updateRanking();
+
+        this.rollLog.addRollLog(this.s.findCamel(camelOutcome), roll, formerLoc, newLoc, affected);
     }
     public void randomRollRandomCamel(){
         ArrayList<Camel> tmp = s.restedCamels();
@@ -55,24 +71,36 @@ public class Game {
         Collections.shuffle(tmp);
         int camelOutcome = tmp.get(0).getId();
         int roll = s.randomedRoll(camelOutcome);
-        t.moveCamelToTile(camelOutcome, t.findCamel(camelOutcome) + roll);
+        int formerLoc = t.findCamel(camelOutcome);
+        int newLoc = formerLoc + roll;
 
+        int affected = t.moveCamelToTile(camelOutcome, newLoc);
+        updateRanking();
+
+        this.rollLog.addRollLog(this.s.findCamel(camelOutcome), roll, formerLoc, newLoc, affected);
+    }
+    public void resetLeg(){
+        s.newLeg();
+        rollLog.legReset();
     }
     public String toString(){
         return t.toString(s.camels()) + s;
     }
+    public String getLog(){
+        return rollLog.toString();
+    }
+    public void updateRanking(){
+        s.updateRank(t.getRanking());
+    }
     public static void main(String[] args){
         char[] c = {'r','b','g','y','p'};
-        int[] s = {1, 2, 3, 3, 2};
-        Game g = new Game(c,s,10);
-        System.out.println(g);
-        g.randomRollDeterminedCamel(1);
-        g.determinedRollDeterminedCamel(1,2);
-        System.out.println(g);
+        Game g = new Game(c,10);
+        g.randomRollRandomCamel();
         g.randomRollRandomCamel();
         g.randomRollRandomCamel();
         g.randomRollRandomCamel();
         g.randomRollRandomCamel();
         System.out.println(g);
+        System.out.println(g.getLog());
     }
 }

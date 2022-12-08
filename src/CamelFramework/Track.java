@@ -47,14 +47,16 @@ public class Track {
         return list;
     }
 
-    public void moveCamelToTile(int cId, int newTileId){
+    public int moveCamelToTile(int cId, int newTileId){
         int cLoc = this.findCamel(cId);
         if(cLoc == -1){
-            return;
+            return -1;
         }
 
         Caravan toMove = this.track.get(tileIdToIndex(cLoc)).createCaravan(cId);
+        int tmpLength = toMove.size();
         this.addCaravan(toMove, newTileId);
+        return tmpLength;
     }
 
     public void addCaravan(Caravan c, int tileId){
