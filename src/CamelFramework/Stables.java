@@ -1,6 +1,9 @@
+package CamelFramework;
+
 import CamelFramework.Camel;
 import CamelFramework.Dice;
 
+import javax.print.attribute.IntegerSyntax;
 import java.util.ArrayList;
 
 public class Stables {
@@ -72,6 +75,7 @@ public class Stables {
     public ArrayList<Camel> camels(){
         return this.camels;
     }
+
 
     public String toString(){
         StringBuilder s = new StringBuilder();

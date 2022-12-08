@@ -48,5 +48,7 @@ public class Camel {
     public boolean isRolled(){
         return this.dice.isRolled();
     }
+    public int[] getFaces(){ return this.dice.getFaces(); }
+    public char getReprsnt(){ return this.reprsnt; }
 
 }

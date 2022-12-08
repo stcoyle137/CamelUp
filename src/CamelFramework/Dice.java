@@ -18,16 +18,13 @@ public class Dice {
         }
     }
 
-    public int getDeterminedRoll(int index){
-        if(this.isRolled){
-            return Integer.MIN_VALUE;
-        }
+    public int getDeterminedRoll(int value){
         this.isRolled = true;
-        return this.faces[index];
+        return value;
     }
     public int getRandomRoll(){
         int index = (int) (Math.random() * this.size);
-        return getDeterminedRoll(index);
+        return getDeterminedRoll(this.faces[index]);
     }
     public void resetDice(){
         this.isRolled = false;
@@ -39,5 +36,8 @@ public class Dice {
 
     public boolean isRolled(){
         return this.isRolled;
+    }
+    public int[] getFaces(){
+        return this.faces;
     }
 }

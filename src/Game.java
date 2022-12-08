@@ -1,13 +1,18 @@
 import Backend.RollLog;
+import Backend.RollPoint;
+import Backend.RollSpace;
 import CamelFramework.Camel;
+import CamelFramework.Stables;
 import CamelFramework.Track;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Game {
     private Stables s;
     private Track t;
+    private RollSpace sp;
     private RollLog rollLog;
     public Game(char[] rprsnts, int trackLength){
         this.rollLog = new RollLog();
@@ -21,8 +26,6 @@ public class Game {
             c.resetDice();
         }
         this.s.updateRank(this.t.getRanking());
-        System.out.println(t.toString(s.camels()));
-        System.out.println(s);
     }
 
     public Game(char[] rprsnts, int[] startingPosition, int trackLength){
@@ -46,7 +49,7 @@ public class Game {
         int newLoc = formerLoc + roll;
 
         int affected = t.moveCamelToTile(camelOutcome, newLoc);
-        updateRanking();
+        this.updateRanking();
 
         this.rollLog.addRollLog(this.s.findCamel(camelOutcome), roll, formerLoc, newLoc, affected);
     }
@@ -59,7 +62,7 @@ public class Game {
         int newLoc = formerLoc + roll;
 
         int affected = t.moveCamelToTile(camelOutcome, newLoc);
-        updateRanking();
+        this.updateRanking();
 
         this.rollLog.addRollLog(this.s.findCamel(camelOutcome), roll, formerLoc, newLoc, affected);
     }
@@ -75,10 +78,68 @@ public class Game {
         int newLoc = formerLoc + roll;
 
         int affected = t.moveCamelToTile(camelOutcome, newLoc);
-        updateRanking();
+        this.updateRanking();
 
         this.rollLog.addRollLog(this.s.findCamel(camelOutcome), roll, formerLoc, newLoc, affected);
     }
+    public void runAnalysis(){
+        //TODO: Create Save Point instead of using the restore Roll Points expression
+        this.sp = new RollSpace(this.s);
+        for(ArrayList<RollPoint> rps : this.sp.rollSpace){
+            followRollPoints(rps);
+            for(Camel c : this.s.camels()){
+                int val = this.sp.outcome.get(c.getId()).get(c.getRank()-1);
+                this.sp.outcome.get(c.getId()).set(c.getRank()-1, val+1);
+            }
+            restoreRollPoints(rps);
+        }
+        this.sp.normalizeOutcome();
+    }
+
+    public void followRollPoints(ArrayList<RollPoint> rps){
+        for(RollPoint rp : rps){
+            determinedRollDeterminedCamel(rp.getRoll(),rp.getCamel());
+        }
+    }
+
+    public void restoreRollPoints(ArrayList<RollPoint> rps){
+        resetLeg();
+        for(int i = rps.size()-1; i >= 0; i--){
+            determinedRollDeterminedCamel(-rps.get(i).getRoll(),rps.get(i).getCamel());
+        }
+        resetLeg();
+    }
+
+    public String getAnalysis(){
+        StringBuilder s = new StringBuilder();
+        for(Camel c : this.s.camels()){
+            s.append(getOutcome(c.getReprsnt(), this.sp.outcome.get(c.getId())));
+        }
+        return s.toString();
+    }
+    public String getNormalizeAnalysis(){
+        StringBuilder s = new StringBuilder();
+        for(Camel c : this.s.camels()){
+            s.append(getNormalizeOutcome(c.getReprsnt(), this.sp.outcomeNormalize.get(c.getId())));
+        }
+        return s.toString();
+    }
+
+    private static String getOutcome(char repres, ArrayList<Integer> a){
+        StringBuilder s = new StringBuilder(repres + ": ");
+        for(int i = 0; i < a.size(); i++){
+            s.append(i+1).append(" - ").append(a.get(i)).append(" times; ");
+        }
+        return s + "\n";
+    }
+    private static String getNormalizeOutcome(char repres, ArrayList<Double> a){
+        StringBuilder s = new StringBuilder(repres + ": ");
+        for(int i = 0; i < a.size(); i++){
+            s.append(i+1).append(" - ").append(a.get(i)).append(" times; ");
+        }
+        return s + "\n";
+    }
+
     public void resetLeg(){
         s.newLeg();
         rollLog.legReset();
@@ -93,14 +154,12 @@ public class Game {
         s.updateRank(t.getRanking());
     }
     public static void main(String[] args){
-        char[] c = {'r','b','g','y','p'};
-        Game g = new Game(c,10);
-        g.randomRollRandomCamel();
-        g.randomRollRandomCamel();
-        g.randomRollRandomCamel();
-        g.randomRollRandomCamel();
-        g.randomRollRandomCamel();
+        char[] c = {'r', 'b', 'g'};
+        int[] i = {1, 2, 1};
+        Game g = new Game(c,i, 17);
+        g.runAnalysis();
         System.out.println(g);
-        System.out.println(g.getLog());
+        System.out.println(g.getAnalysis());
+        System.out.println(g.getNormalizeAnalysis());
     }
 }
