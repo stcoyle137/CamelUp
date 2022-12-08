@@ -8,6 +8,7 @@ import CamelFramework.Track;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class Game {
     private Stables s;
@@ -84,6 +85,7 @@ public class Game {
     }
     public void runAnalysis(){
         //TODO: Create Save Point instead of using the restore Roll Points expression
+        ArrayList<Integer> tmp = this.s.unrestedCamels();
         this.sp = new RollSpace(this.s);
         for(ArrayList<RollPoint> rps : this.sp.rollSpace){
             followRollPoints(rps);
@@ -94,6 +96,9 @@ public class Game {
             restoreRollPoints(rps);
         }
         this.sp.normalizeOutcome();
+        for(int id : tmp){
+            determinedRollDeterminedCamel(0, id);
+        }
     }
 
     public void followRollPoints(ArrayList<RollPoint> rps){
@@ -121,9 +126,13 @@ public class Game {
         StringBuilder s = new StringBuilder();
         for(Camel c : this.s.camels()){
             s.append(getNormalizeOutcome(c.getReprsnt(), this.sp.outcomeNormalize.get(c.getId())));
+            s.append("\t").append("Lowest Fair Bet: ").append((int) Math.ceil(ShortBet.getLowestFairBet(this.sp.outcomeNormalize.get(c.getId()))));
+            s.append("\n\t").append("Lowest Roll Bet: ").append((int) Math.ceil(ShortBet.getLowestRollBet(this.sp.outcomeNormalize.get(c.getId()))));
+            s.append("\n\n");
         }
         return s.toString();
     }
+
 
     private static String getOutcome(char repres, ArrayList<Integer> a){
         StringBuilder s = new StringBuilder(repres + ": ");
@@ -154,12 +163,18 @@ public class Game {
         s.updateRank(t.getRanking());
     }
     public static void main(String[] args){
-        char[] c = {'r', 'b', 'g'};
-        int[] i = {1, 2, 1};
+        char[] c = {'r', 'b', 'g', 'y', 'p'};
+        int[] i = {1, 2, 3, 3, 2};
         Game g = new Game(c,i, 17);
-        g.runAnalysis();
+        Scanner s = new Scanner(System.in);
+        for(int x = 1; x < 6; x++) {
+            System.out.println(g);
+            s.next();
+            g.randomRollRandomCamel();
+            g.runAnalysis();
+            System.out.println("Round " + x);
+            System.out.println(g.getNormalizeAnalysis());
+        }
         System.out.println(g);
-        System.out.println(g.getAnalysis());
-        System.out.println(g.getNormalizeAnalysis());
     }
 }

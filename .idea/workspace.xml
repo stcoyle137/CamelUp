@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="62512a7b-1d2b-43a1-aad8-5fe262edda60" name="Changes" comment="Add Log and Fixed bug with rankings.">
-      <change afterPath="$PROJECT_DIR$/src/Backend/RollPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Backend/RollSpace.java" afterDir="false" />
+    <list default="true" id="62512a7b-1d2b-43a1-aad8-5fe262edda60" name="Changes" comment="Added Analysis for short term bets.">
+      <change afterPath="$PROJECT_DIR$/src/ShortBet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CamelFramework/Camel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CamelFramework/Camel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CamelFramework/Dice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CamelFramework/Dice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backend/RollSpace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/RollSpace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CamelFramework/Stables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CamelFramework/Stables.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CamelFramework/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CamelFramework/Track.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Stables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CamelFramework/Stables.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +159,21 @@
       <option name="project" value="LOCAL" />
       <updated>1670473970883</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added Analysis for short term bets.">
+      <created>1670489053921</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1670489053921</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added Analysis for short term bets.">
+      <created>1670489066312</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1670489066312</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -183,6 +195,7 @@
     <MESSAGE value="Fixed small bugs" />
     <MESSAGE value="Created Basic game with 5 (variable) colored camels and one (resetable) leg" />
     <MESSAGE value="Add Log and Fixed bug with rankings." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Log and Fixed bug with rankings." />
+    <MESSAGE value="Added Analysis for short term bets." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Analysis for short term bets." />
   </component>
 </project>

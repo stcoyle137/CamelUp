@@ -19,6 +19,11 @@ public class RollSpace {
         ArrayList<Integer> camelIds = new ArrayList<>();
         Hashtable<Integer, ArrayList<Integer>> idToRollSpace = new Hashtable<>();
         for(Camel c : s.camels()){
+            outcome.put(c.getId(), new ArrayList<>());
+            for(int i = 0; i<s.camels().size(); i++){
+                outcome.get(c.getId()).add(0);
+            }
+
             if(c.isRolled()){
                 continue;
             }
@@ -28,11 +33,6 @@ public class RollSpace {
                 faces.add(i);
             }
             idToRollSpace.put(c.getId(), faces);
-
-            outcome.put(c.getId(), new ArrayList<>());
-            for(int i = 0; i<s.camels().size(); i++){
-                outcome.get(c.getId()).add(0);
-            }
         }
 
         ArrayList<ArrayList<Integer>> permutatedIds = permutateId(camelIds);

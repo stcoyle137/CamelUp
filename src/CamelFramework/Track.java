@@ -116,11 +116,10 @@ public class Track {
     }
 
     public String toString(ArrayList<Camel> camels){
-        StringBuilder s = new StringBuilder("\n-------------");
-        s.append(this.track.get(0).getId()-1).append("\n");
+        StringBuilder s = new StringBuilder("| ");
         for(Tile t : this.track){
-            s.append(t.toString(camels)).append("\n-------------").append(t.getId()).append("\n");
+            s.append(t.toString(camels)).append("| ");
         }
-        return s.toString();
+        return s + "\n";
     }
 }

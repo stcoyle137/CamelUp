@@ -42,6 +42,16 @@ public class Stables {
         return tmp;
     }
 
+    public ArrayList<Integer> unrestedCamels(){
+        ArrayList<Integer> tmp = new ArrayList<>();
+        for(Camel c : this.camels){
+            if(c.isRolled()){
+                tmp.add(c.getId());
+            }
+        }
+        return tmp;
+    }
+
     public int determinedRoll(int camelId, int roll){
         if(findCamel(camelId).isRolled()){
             return Integer.MIN_VALUE;
