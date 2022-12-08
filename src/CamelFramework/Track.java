@@ -8,8 +8,9 @@ import java.util.Enumeration;
 
 public class Track {
     private ArrayList<Tile> track;
-
+    private int length;
     public Track(int length){
+        this.length = length;
         this.track = new ArrayList<>();
         for (int i = 0; i < length; i++) {
             this.track.add(new Tile());
@@ -108,6 +109,10 @@ public class Track {
             s.append(t.toString()).append("\n-------------").append(t.getId()).append("\n");
         }
         return s.toString();
+    }
+
+    public int getLength(){
+        return length;
     }
 
     public String toString(ArrayList<Camel> camels){
