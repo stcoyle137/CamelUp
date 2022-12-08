@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="62512a7b-1d2b-43a1-aad8-5fe262edda60" name="Changes" comment="Camel and Dice new and improved construction">
+    <list default="true" id="62512a7b-1d2b-43a1-aad8-5fe262edda60" name="Changes" comment="Fixed small bugs">
+      <change afterPath="$PROJECT_DIR$/src/CamelFramework/Caravan.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CamelFramework/Tile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CamelFramework/Track.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Stables.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Camel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CamelFramework/Camel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CamelFramework/Dice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -135,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670397988960</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fixed small bugs">
+      <created>1670398346193</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1670398346193</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,6 +167,7 @@
     <MESSAGE value="Test commit" />
     <MESSAGE value="Camel and Dice first construction" />
     <MESSAGE value="Camel and Dice new and improved construction" />
-    <option name="LAST_COMMIT_MESSAGE" value="Camel and Dice new and improved construction" />
+    <MESSAGE value="Fixed small bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed small bugs" />
   </component>
 </project>

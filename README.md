@@ -1,2 +1,2 @@
 # CamelUp
-Probabilistic analysis of the board game Camel Up 
+Probabilistic analysis of the board game CamelFramework.Camel Up 

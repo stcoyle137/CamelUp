@@ -1,18 +1,17 @@
-import java.util.Random;
+package CamelFramework;
+
 
 public class Dice {
     private boolean isRolled;
     private int[] faces;
-    private int camelId;
     private int size;
 
-    public Dice(int camel, int minVal, int maxVal){
+    public Dice(int minVal, int maxVal){
         if(maxVal <= minVal){
             return;
         }
         this.size = maxVal - minVal + 1;
         this.faces = new int[this.size];
-        this.camelId = camel;
 
         for (int i = 0; i < this.size; i++) {
             this.faces[i] = i + minVal;
@@ -32,10 +31,6 @@ public class Dice {
     }
     public void resetDice(){
         this.isRolled = false;
-    }
-
-    public int getCamelId(){
-        return this.camelId;
     }
 
     public int getSize(){
