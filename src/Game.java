@@ -164,17 +164,11 @@ public class Game {
     }
     public static void main(String[] args){
         char[] c = {'r', 'b', 'g', 'y', 'p'};
-        int[] i = {1, 2, 3, 3, 2};
+        int[] i = {1, 1, 3, 3, 3};
         Game g = new Game(c,i, 17);
-        Scanner s = new Scanner(System.in);
-        for(int x = 1; x < 6; x++) {
-            System.out.println(g);
-            s.next();
-            g.randomRollRandomCamel();
-            g.runAnalysis();
-            System.out.println("Round " + x);
-            System.out.println(g.getNormalizeAnalysis());
-        }
+        g.randomRollRandomCamel();
+        g.runAnalysis();
+        System.out.println(g.getNormalizeAnalysis());
         System.out.println(g);
     }
 }
